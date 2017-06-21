@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# Use this program to create a new jekyll blog entry in the _posts directory.
+# It goes something like this:
+# 
+# blog This is a Post
+#
+# And it should output a file named something like this:
+#
+# 2016-11-03-this-is-a-post.markdown
+#
+# And in that file should be the unchanged name, and the full date and time. It
+# should then open in your editor of choice. I like vim, if you don't, change the
+# setting below.
+
+
+# Change this if you don't use vim. I know unix systems should use $EDITOR, 
+# testing the contents of that environment variable and using it if it's not blank
+# would be a better way to do this. A TODO for later.
+texteditor=vim
+
+# Capture all commandline arguments as a single string
+input="$@"
+
+# Slugify: Convert to lowercase, replace spaces with hyphens, remove apostrophes and quotes
+#slugified=`echo $input | tr '[:upper:]' '[:lower:]' | tr ' ' '-'`
+
+# Found this improved slugify one-liner online. It cleans up strings to make them http 
+# url friendly. It converts anything other than letters or numbers into hyphens, replaces 
+# any groups of hyphens with a single hyphen, then converts capitals to lowercase.
+slugified="$(echo -n "${input}" | sed -e 's/[^[:alnum:]]/-/g' | tr -s '-' | tr A-Z a-z)"
+
+
+# Get the short date for use in the post's filename
+shortdate=`date +'%F'`
+
+
+
+# Now to turn those chunks of data into something useful
+
+filename=_posts/$shortdate-$slugified.md
+frontmatter="---
+layout: post
+title: \"$input\"
+tags:
+---
+"
+
+
+
+# If that file exists, tell the user, then exit
+
+if [ -a $filename ]; then
+    echo "The file $filename, already exists. Please delete it and try again";
+    exit 1
+fi;
+
+
+# Paste the front matter into the file and then open that file for editing
+
+echo "$frontmatter" > $filename
+$texteditor $filename
+

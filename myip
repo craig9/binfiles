@@ -1,0 +1,8 @@
+#!/bin/bash
+
+url="https://tascode.com/ip.php"
+
+#echo "requesting $url"
+
+curl $url && echo
+

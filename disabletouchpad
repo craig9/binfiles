@@ -1,0 +1,4 @@
+#!/bin/bash
+
+syndaemon -dt
+notify-send "Touchpad disabled while typing"

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+target=${1%/}
+
+if ! [[ -f $target ]] && ! [[ -d $target ]]
+then
+    echo "Invalid file/folder passed";
+    exit -1;
+fi
+
+gpg-zip -c -o $target.gpg $target

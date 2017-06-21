@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ledger -f ~/ledger/journal.txt $*
+

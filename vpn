@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# pass in an ssh server name - can be a shortcut from .ssh/config if you like
+
+echo "Routing all local traffic through $1.."
+sshuttle -r "$1" -v 0/0

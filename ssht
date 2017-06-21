@@ -1,0 +1,4 @@
+#!/bin/bash
+
+autossh -t "$1" 'tmux -2 attach -t craig || tmux -2 new -s craig';
+

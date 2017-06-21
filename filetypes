@@ -1,0 +1,4 @@
+#!/bin/bash
+
+find -type f | awk -F . '{print tolower($NF)}' | sort | uniq -c | awk '{print $1,$2}' | column -t | sort -rn
+

@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Uses imagemagick.
+
+# Pass one or more image filenames to this script, and it'll ripple through creating
+# thumbnail and (a new) full size version. My camera makes 4000x3000 resolution images,
+# which is larger than I want for even the "full size" version on my website.
+
+# Running this script as follows: thumbnail my-image.jpg (where my-image.jpg is a big file...)
+
+# Should result in a my-image.full.jpg of 950xsomething and a my-image.thumb.jpg of 500xsomething.
+
+for f in "$@"
+do
+    quality=95
+    filename="${f%.*}"
+    extension="${f##*.}"
+
+    thumb_width=500
+    thumb_name=$filename.thumb.$extension
+
+    full_width=950
+    full_name=$filename.full.$extension
+
+    echo $thumb_name
+    echo $full_name
+
+    convert "$f" -resize "$thumb_width" -quality $quality "$thumb_name"
+    convert "$f" -resize "$full_width" -quality $quality "$full_name"
+
+done
+

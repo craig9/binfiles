@@ -1,0 +1,5 @@
+#!/bin/bash
+
+xinput disable 'Atmel Atmel maXTouch Digitizer'
+notify-send "Touch screen disabled"
+

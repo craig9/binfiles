@@ -1,0 +1,15 @@
+#!/usr/bin/python
+
+import os
+import sys
+import datetime
+
+params = " ".join(sys.argv[1:])
+now = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M")
+logfile = os.path.expanduser("~/log.txt")
+text = "%s %s\n" % (now, params)
+
+fh = open(logfile, "a")
+fh.write(text)
+fh.close()
+

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+rsync -ah --exclude "lost+found" --info=progress2 --no-i-r "$1" "$2"
+
