@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#gpg --output ~/.passwords --decrypt ~/.passwords.gpg
+gpg --output ~/.passwords --decrypt ~/.passwords.gpg
+
+if [ ! -f ~/.passwords ]; then
+    echo "Decryption failed"
+    exit -1;
+fi
+
+rm ~/.passwords.gpg
+
+vim ~/.passwords 
+
+if [ ! -f ~/.passwords ]; then
+    echo "~/.passwords went missing!"
+    exit -1;
+fi
+
+#gpg --symmetric ~/.passwords
+gpg --output ~/.passwords.gpg --encrypt --recipient craig9@gmail.com ~/.passwords
+
+if [ ! -f ~/.passwords.gpg ]; then
+    echo "Encryption failed, ~/.passwords is still cleartext"
+    exit -1;
+fi
+
+rm ~/.passwords
+
+echo "Done"

@@ -1,4 +1,4 @@
 #!/bin/bash
 
-ledger -f ~/ledger/journal.txt $*
+ledger -f ~/src/Accounts/journal.txt $*
 
