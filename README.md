@@ -8,9 +8,9 @@ Handy scripts that live in ~/bin
 
 cd ~
 
-2. Clone the repo
+2. Clone the repo into ~/bin
 
-git clone http://github.com/craig9/bin
+git clone http://github.com/craig9/binfiles bin
 
 3. Re-source your .profile file to enable the bin directory
 
